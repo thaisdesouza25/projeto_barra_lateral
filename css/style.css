@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #4A90E2; /* Azul principal */
+    --secondary-color: #6a6a6a; /* Cor de texto secundária */
+    --background-color: #f0f2f5;
+    --sidebar-bg: #1e283b; /* Fundo mais escuro para a sidebar */
+    --link-hover-bg: #2c3e50; /* Fundo ao passar o mouse */
+    --text-color-light: #e0e0e0; /* Texto claro para a sidebar */
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--background-color);
+    min-height: 100vh;
+    display: flex; /* Para o layout principal */
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 80px; /* Largura inicial recolhida */
+    background: var(--sidebar-bg);
+    padding: 10px 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Para empurrar o perfil para baixo */
+}
+
+/* Expande a sidebar ao passar o mouse */
+.sidebar:hover {
+    width: 250px; /* Largura expandida */
+}
+
+.logo-details {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    height: 60px;
+    white-space: nowrap; /* Garante que o texto não quebre */
+    overflow: hidden; /* Esconde o texto quando recolhido */
+}
+
+.logo-details .icon {
+    font-size: 30px;
+    color: var(--primary-color);
+    min-width: 50px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.logo-details .logo-name {
+    color: var(--text-color-light);
+    font-size: 22px;
+    font-weight: 600;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .logo-details .logo-name {
+    opacity: 1; /* Mostra o nome do logo ao expandir */
+}
+
+.nav-links {
+    list-style: none;
+    padding: 15px 0;
+    flex-grow: 1; /* Faz a lista ocupar o espaço restante */
+}
+
+.nav-links li {
+    position: relative;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.nav-links li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color-light);
+    height: 100%;
+    width: 100%;
+    padding: 0 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 8px;
+    white-space: nowrap;
+    overflow: hidden; /* Esconde o texto do link quando recolhido */
+}
+
+.nav-links li a:hover {
+    background: var(--link-hover-bg);
+    color: var(--primary-color);
+}
+
+.nav-links li a .link-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .nav-links li a .link-name {
+    opacity: 1; /* Mostra o nome do link ao expandir */
+}
+
+.nav-links li i {
+    font-size: 22px;
+    min-width: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: var(--text-color-light);
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover i {
+    color: var(--primary-color);
+}
+
+.profile-details {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background: #2c3e50; /* Fundo para a área do perfil */
+    color: var(--text-color-light);
+    white-space: nowrap;
+    overflow: hidden; /* Esconde o texto do perfil quando recolhido */
+    transition: background-color 0.3s ease;
+}
+
+.profile-details:hover {
+    background: #34495e;
+}
+
+.profile-details .profile-content {
+    min-width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-details .profile-content img {
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 50%; /* Imagem redonda */
+    border: 2px solid var(--primary-color);
+}
+
+.profile-details .name-job {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .profile-details .name-job {
+    opacity: 1; /* Mostra nome e cargo ao expandir */
+}
+
+.profile-details .name-job .profile-name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.profile-details .name-job .job {
+    font-size: 13px;
+    color: #b0b0b0;
+}
+
+.profile-details .log-out {
+    font-size: 22px;
+    color: var(--text-color-light);
+    margin-left: auto; /* Empurra o ícone para a direita */
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.sidebar:hover .profile-details .log-out {
+    opacity: 1; /* Mostra o ícone de logout ao expandir */
+}
+
+.profile-details .log-out:hover {
+    color: var(--primary-color);
+}
+
+/* Responsividade básica */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px; /* Ainda mais estreita em telas pequenas */
+    }
+    .sidebar:hover {
+        width: 200px;
+    }
+    .logo-details .logo-name,
+    .nav-links li a .link-name,
+    .profile-details .name-job,
+    .profile-details .log-out {
+        font-size: 0.9em; /* Fontes um pouco menores */
+    }
+    .logo-details .icon,
+    .nav-links li i,
+    .profile-details .log-out {
+        min-width: 40px; /* Ícones menores */
+        font-size: 20px;
+    }
+    .profile-details .profile-content img {
+        height: 35px;
+        width: 35px;
+    }
+}
